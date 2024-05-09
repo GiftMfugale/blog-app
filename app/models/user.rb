@@ -1,0 +1,23 @@
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
+  enum role: { user: 0, moderator: 1, admin: 2 }
+  validates :role, inclusion: { in: roles.keys }
+
+  # validates :name, presence: true
+  # validates :posts_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  def three_recent_posts
+    posts.order(created_at: :desc).limit(3)
+  end
+
+  def full_name
+    "#{first_name&.capitalize} #{last_name&.capitalize}"
+  end
+end

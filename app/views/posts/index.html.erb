@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="header">
+
+    </div>
+
+    <div class="content">
+        <h2 class="header">USER POSTS WITH COMMENTS</h2>
+
+        
+
+        <div class="post">
+        <div class="user-photo">
+            <%= image_tag "default-user.png", alt: "User image", width: '90', height: '90' %>
+        </div>
+
+        <div class="user-info">
+            <div class="user-name"><%= @user.name %></div>
+            <div class="user-posts">Number of posts: <%= @user.posts_counter %></div>
+
+        </div>
+        </div>
+       
+
+        <% @user_posts.each_with_index do |user_post, index| %>
+        <div class="post-details">
+         <h4> 
+         Post #<%= index + 1 %>: 
+         <%=link_to  user_post.title, user_post_path(user_id: @user.id, post_id: user_post.id)%>
+        </h4>
+            <p>
+              <%= user_post.text%>
+
+              <span>
+              <%= link_to add_likes_path(user_post), method: :post do %>
+              <%= image_tag("like-image.jpg", alt: "Like", width: 40, height: 40, title: "Click to like this post") %>
+              <% end %> 
+              </span>  
+             </p>
+            <div class="comments-and-likes-count">
+                
+              Comments:<%= user_post.comments_counter%>, Likes: <%= user_post.likes_counter%>
+            </div>
+
+        </div>
+
+          <div class="post-comment">
+            <% user_post.comments.each do |comment| %>
+             <p><span><strong><%= comment.commented_by %>: </strong></span> <%= comment.text%></p>
+             <% end %>
+             <%=  render 'comments/new_comment', :post => user_post, :curr_user => @user %>
+
+          </div>
+        <% end %>
+        
+
+      
+
+    </div>
+
+
+<div>

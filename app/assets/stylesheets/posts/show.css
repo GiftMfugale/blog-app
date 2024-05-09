@@ -1,0 +1,38 @@
+.post-in-details {
+  margin: 20px auto 0;
+  padding: 10px;
+  border: 1px solid #c5c5c5;
+  text-align: left;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.post-in-details p {
+  color: #4d4a4a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.post-in-details-head {
+    margin-bottom: 10px;
+    overflow: hidden;
+
+}
+
+.post-in-details-head::after {
+  content: "";
+  clear: both; 
+}
+
+.posted-by {
+    font-size: 16px;
+    color: #333;
+    float: left;
+}
+
+.comments-and-likes-count-top {
+    color: #666;
+    float: right; 
+    font-size: 14px;
+}
+

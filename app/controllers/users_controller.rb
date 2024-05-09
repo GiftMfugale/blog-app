@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
-    def index  
-    end
+  def index
+    @users =  User.all
+  end
 
-    def show
-    end
-
+  def show
+    @user = User.find(params[:id])
+    @user_posts =  @user.posts
+   end  
+   
+   private 
+   def user_id_param
+    # TODO:  user ID must be protected
+   end
 end
