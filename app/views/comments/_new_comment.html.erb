@@ -1,0 +1,13 @@
+
+<div class="new-comment">
+
+<%= form_with(model:[post, post.comments.build], url: post_comments_path(post)) do |form|%>
+<div class="comment-form">
+<div class="comment-area"><%= form.text_area :text, placeholder: "Leave you comment  here"%></div>
+<div class="comment-submit"><%= form.submit 'Send'%></div>
+</div>
+<% if curr_user.present? %>
+<%= form.hidden_field :user_id, value: curr_user.id %>
+<% end %>
+<% end %>
+</div>

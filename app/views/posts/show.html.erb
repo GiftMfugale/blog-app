@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="header">
+
+    </div>
+
+    <div class="content">
+        <h2 class="header">POST DETAILS</h2>
+
+        <div class="post-in-details">
+            <div class="post-in-details-head">
+                <h4 class="posted-by"> Posted by: <%= @user.name %></h4>
+                <h4 class="comments-and-likes-count-top">Comments: <%= @post.comments_counter%>, Likes: <%= @post.likes_counter%></h4>
+            </div>
+            <p><%= @post.text %></p>
+
+        </div>
+        
+        <div class="post-comment">
+            <% @post.comments.each do |comment| %>
+             <p><span><strong><%= comment.commented_by %>: </strong></span> <%= comment.text%></p>
+             <% end %>
+
+             <%= render 'comments/new_comment', :post => @post, :curr_user => @current_user %>
+
+          </div>
+        
+
+
+    
+
+        
+
+       
+
+        
+
+    </div>
+
+
+<div>
